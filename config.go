@@ -11,6 +11,7 @@ type EngineOptions struct {
 	WriteTimeout      time.Duration
 	IdlTimeout        time.Duration
 	Addr              string
+	HandleMethodNotAllowed bool
 }
 
 // EngineOption 函数选项模式的一个优势是可以解决零值的问题。
@@ -37,6 +38,12 @@ func WithWriteTimeout(timeout time.Duration) EngineOption {
 func WithAddr(addr string) EngineOption {
 	return func(ops *EngineOptions) {
 		ops.Addr = addr
+	}
+}
+
+func WithHandleMethodNotAllowed() EngineOption {
+	return func(ops *EngineOptions) {
+		ops.HandleMethodNotAllowed = true
 	}
 }
 

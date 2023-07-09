@@ -2,6 +2,7 @@ package mini_gin
 
 import (
 	"fmt"
+	"github.com/WANGgbin/mini_gin/util"
 	"strings"
 )
 
@@ -29,7 +30,7 @@ type trieTree struct {
 }
 
 func (tree *trieTree) insert(route string, handlers ...MiddleWare) {
-	assert(len(handlers) > 0, "handlers should not be empty")
+	util.Assert(len(handlers) > 0, "handlers should not be empty")
 
 	curNode := tree.root
 	curIndex := 0
@@ -237,7 +238,7 @@ func (n *node) getRouteInfo(route string) *pathInfo {
 	for _, candidate := range candidateNodes {
 		info := candidate.getRouteInfo(route[nextIndex:])
 		if info != nil {
-			MergeParam(&params, info.params)
+			util.MergeParam(&params, info.params)
 			return &pathInfo{handlers: info.handlers, params: params}
 		}
 	}
@@ -323,7 +324,7 @@ func (n *node) findCandidateNodes(route string) []*node {
 	}
 
 	// 最多存在两个节点
-	assert(len(candidateNodes) <= 2, fmt.Sprintf("candidateNodes must be less than 2"))
+	util.Assert(len(candidateNodes) <= 2, fmt.Sprintf("candidateNodes must be less than 2"))
 
 	return candidateNodes
 }

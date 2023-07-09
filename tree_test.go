@@ -406,7 +406,7 @@ func Test_trieTree_getPathInfo(t *testing.T) {
 				}
 				printTrieTree(tree)
 				for route, info := range testCase.wantResult {
-					gotPathInfo := tree.getPathInfo(route)
+					gotPathInfo := tree.getRouteInfo(route)
 					if info == nil {
 						convey.So(gotPathInfo, convey.ShouldBeNil)
 					} else {

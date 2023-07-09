@@ -56,6 +56,10 @@ func (rg *RouteGroup) getAbsRoute(relativeRoute string) string {
 	return path.Join(rg.basePrefix, relativeRoute)
 }
 
+func (rg *RouteGroup) getBaseHandlers() []MiddleWare {
+	return rg.baseHandlers
+}
+
 func (rg *RouteGroup) getHandlers(deltas ...MiddleWare) []MiddleWare {
 	length := len(rg.baseHandlers) + len(deltas)
 	if length == 0 {
