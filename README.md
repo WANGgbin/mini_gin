@@ -1,1 +1,1 @@
-a minimal version of GIN just for learning.
+a minimal implement of GIN just for learning.
